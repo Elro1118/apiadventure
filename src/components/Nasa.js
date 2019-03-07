@@ -14,10 +14,21 @@ export default function Nasa() {
 
   return (
     <>
-      <img src={nasaData.url} alt={nasaData.title} />
-      <h2>{nasaData.title}</h2>
-      <p className="explanation-section">{nasaData.explanation}</p>
-      <p className="copyright-section">{nasaData.copyright}</p>
+      <link
+        href="https://fonts.googleapis.com/css?family=Merriweather+Sans"
+        rel="stylesheet"
+      />
+      <h1>My NASA APIS </h1>
+      <div className="main-section">
+        <img src={nasaData.url} alt={nasaData.title} />
+
+        <div className="detail-section">
+          <h3>{nasaData.title}</h3>
+          <p className="explanation-section">{nasaData.explanation}</p>
+          <p className="copyright-section">copyright: {nasaData.copyright}</p>
+        </div>
+      </div>
+      <footer> made with 💛 at SDG</footer>
     </>
   )
 }
