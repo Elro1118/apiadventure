@@ -5,7 +5,7 @@ export default function Nasa() {
   const [nasaData, setNasaData] = useState({})
 
   useEffect(() => {
-    const URL = `https://api.nasa.gov/planetary/apod?api_key=flkzuPYpWlU6MrCsszddBw2TCz5LU6W91qO3bZR2`
+    const URL = `https://localhost:5001/api/Picture`
     axios.get(URL).then(resp => {
       console.log({ resp })
       setNasaData(resp.data)
@@ -20,12 +20,12 @@ export default function Nasa() {
       />
       <h1>My NASA APIS </h1>
       <div className="main-section">
-        <img src={nasaData.url} alt={nasaData.title} />
+        <img src={nasaData.image} alt={nasaData.title} />
 
         <div className="detail-section">
           <h3>{nasaData.title}</h3>
-          <p className="explanation-section">{nasaData.explanation}</p>
-          <p className="copyright-section">copyright: {nasaData.copyright}</p>
+          <p className="explanation-section">{nasaData.description}</p>
+          {/* <p className="copyright-section">copyright: {nasaData.copyright}</p> */}
         </div>
       </div>
       <footer> made with 💛 at SDG</footer>
