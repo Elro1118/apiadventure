@@ -7,6 +7,7 @@ import Form from 'react-jsonschema-form'
 export default function Pictures() {
   const [pictures, setPictures] = useState([])
   const [isLoading, setLoading] = useState(true)
+  const [oldSearching, setOldSearching] = useState('')
 
   const schema = {
     title: '',
@@ -33,9 +34,22 @@ export default function Pictures() {
   // }
 
   const searchForPictures = event => {
+    setOldSearching(event.formData.search)
     let _url = `https://localhost:5001/api/search/pictures?query=${
       event.formData.search
     }`
+    setLoading(true)
+
+    axios.get(_url).then(resp => {
+      console.log({ resp })
+      setLoading(false)
+
+      setPictures(resp.data.results)
+    })
+  }
+
+  const searchAfterDelete = () => {
+    let _url = `https://localhost:5001/api/search/pictures?query=${oldSearching}`
     setLoading(true)
 
     axios.get(_url).then(resp => {
@@ -59,7 +73,7 @@ export default function Pictures() {
         console.log(resp)
 
         if (resp.status === 200) {
-          // searchForPictures()
+          searchAfterDelete()
           // setPictures(resp.data.results)
         }
       })
