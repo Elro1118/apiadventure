@@ -42,3 +42,18 @@ footer {
 .copyright-section {
   padding: 1rem;
 }
+
+nav {
+  margin-top: 0;
+  height: 5rem;
+  background: #4f953b;
+}
+
+nav li {
+  list-style: none;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+}
