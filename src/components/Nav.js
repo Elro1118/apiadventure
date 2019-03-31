@@ -11,7 +11,7 @@ class Nav extends Component {
               <Link to={`/Addform`}>Add Picture Day</Link>
             </li>
             <li>
-              <a href="#">Search Picture Day</a>
+              <Link to={`/FindPicture`}>Search Picture Day</Link>
             </li>
           </ul>
         </nav>
