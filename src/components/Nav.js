@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class Nav extends Component {
   render() {
@@ -7,7 +8,7 @@ class Nav extends Component {
         <nav>
           <ul>
             <li>
-              <a href="#">Add Picture Day</a>
+              <Link to={`/Addform`}>Add Picture Day</Link>
             </li>
             <li>
               <a href="#">Search Picture Day</a>
