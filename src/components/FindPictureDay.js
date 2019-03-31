@@ -5,7 +5,7 @@ import axios from 'axios'
 import Form from 'react-jsonschema-form'
 
 export default function Pictures() {
-  const [pictures, setPets] = useState([])
+  const [pictures, setPictures] = useState([])
   const [isLoading, setLoading] = useState(true)
 
   const schema = {
@@ -42,13 +42,28 @@ export default function Pictures() {
       console.log({ resp })
       setLoading(false)
 
-      setPets(resp.data.results)
+      setPictures(resp.data.results)
     })
   }
 
   // useEffect(() => {
   //   getAllPetsThatCanBeAdopted()
+
   // }, [])
+
+  const deletePicture = event => {
+    console.log(event.target.value)
+    axios
+      .delete(`https://localhost:5001/api/Picture/${event.target.value}`)
+      .then(resp => {
+        console.log(resp)
+
+        if (resp.status === 200) {
+          // searchForPictures()
+          // setPictures(resp.data.results)
+        }
+      })
+  }
 
   return (
     <>
@@ -77,7 +92,7 @@ export default function Pictures() {
                     <button
                       className="btn btn-danger"
                       value={m.id}
-                      // onClick={this.deletePicture}
+                      onClick={deletePicture}
                     >
                       Delete
                     </button>
