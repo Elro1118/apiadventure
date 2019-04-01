@@ -60,7 +60,7 @@ class UpdatePicture extends Component {
         {this.state.requestStatus === 204 ? (
           <div className="alert alert-secondary" role="alert">
             It updated successfully. Click it if you would like to go{' '}
-            <Link to={`/FindPicture`}>Search Pictures</Link>.
+            <Link to={`/FindPicture`}>Search Picture</Link>.
           </div>
         ) : (
           <Form

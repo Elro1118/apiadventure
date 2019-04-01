@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import Form from 'react-jsonschema-form'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 const schema = {
   title: 'Add New Object',
   type: 'object',
-  // required: ['title'],
+  required: ['title', 'description', 'image'],
   properties: {
     title: { type: 'string', title: 'Title', default: 'Add a Title' },
     description: {
@@ -14,46 +15,47 @@ const schema = {
       default: 'Add Description'
     },
     image: { type: 'string', title: 'NASA picture', default: null }
-    // done: { type: 'boolean', title: 'Done?', default: false }
   }
 }
 const log = type => console.log.bind(console, type)
 
 class Addform extends Component {
+  state = {
+    requestStatus: 0
+  }
   onSubmit = event => {
-    console.log(event.formData)
     axios
       .post('https://localhost:5001/api/Picture', event.formData)
       .then(resp => {
         console.log(resp)
 
         if (resp.status === 201) {
-          console.log(event.formData)
-
-          //   // const oldForm = this.state.formSchema
-          //   oldForm.properties.name.default = 'A new dish'
-          //   oldForm.properties.origin.default = 'A country'
-          //   this.setState({
-          //     formSchema: oldForm
-          //   })
+          this.setState({ requestStatus: resp.status })
         }
       })
   }
   render() {
     return (
-      <div>
-        <section>
-          <header>
-            <h1> Add new entry </h1>
-          </header>
-          <Form
-            schema={schema}
-            onChange={log('changed')}
-            onSubmit={this.onSubmit}
-            onError={log('errors')}
-          />
-        </section>
-      </div>
+      <>
+        {this.state.requestStatus === 201 ? (
+          <div className="alert alert-secondary" role="alert">
+            It created successfully. Click it if you would like to go{' '}
+            <Link to={`/`}>Home</Link>.
+          </div>
+        ) : (
+          <section>
+            <header>
+              <h1> Add new picture </h1>
+            </header>
+            <Form
+              schema={schema}
+              onChange={log('changed')}
+              onSubmit={this.onSubmit}
+              onError={log('errors')}
+            />
+          </section>
+        )}
+      </>
     )
   }
 }

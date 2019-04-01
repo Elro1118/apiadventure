@@ -8,10 +8,14 @@ class Nav extends Component {
         <nav>
           <ul>
             <li>
-              <Link to={`/Addform`}>Add Picture Day</Link>
+              <Link to={`/Addform`} className="link-nav">
+                Add Picture Day
+              </Link>
             </li>
             <li>
-              <Link to={`/FindPicture`}>Search Picture Day</Link>
+              <Link to={`/FindPicture`} className="link-nav">
+                Search Picture Day
+              </Link>
             </li>
           </ul>
         </nav>

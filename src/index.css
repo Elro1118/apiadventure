@@ -49,8 +49,13 @@ nav {
   background: #4f953b;
 }
 
-nav li {
-  color: red;
+.link-nav {
+  color: white;
+}
+
+.link-nav:hover {
+  color: #212121;
+  text-decoration: none;
 }
 
 nav ul {

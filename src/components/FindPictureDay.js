@@ -12,8 +12,9 @@ export default function Pictures() {
   const schema = {
     title: '',
     type: 'object',
+    required: ['search'],
     properties: {
-      search: { type: 'string', title: 'Search for picture', default: '' }
+      search: { type: 'string', title: 'Search', default: '' }
     }
   }
   const uiSchema = {
@@ -69,6 +70,7 @@ export default function Pictures() {
         {' '}
         <Link to={`/`}>/Home</Link>
       </p>
+      <h1>Search Picture</h1>
       <Form schema={schema} uiSchema={uiSchema} onSubmit={searchForPictures} />
       {pictures.length > 0 && (
         <table className="table">
@@ -113,7 +115,7 @@ export default function Pictures() {
         </table>
       )}
       {pictures.length === 0 && !isLoading && <h3>No results found</h3>}
-      {isLoading && <div className="loading-icon">loading results...</div>}
+      {/* {isLoading && <div className="loading-icon">loading results...</div>} */}
     </>
   )
 }

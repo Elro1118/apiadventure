@@ -18,7 +18,7 @@ export default function Nasa() {
         href="https://fonts.googleapis.com/css?family=Merriweather+Sans"
         rel="stylesheet"
       />
-      <h1>My NASA APIS </h1>
+      <h1>My NASA API </h1>
 
       {nasaData.map((m, i) => {
         return (
@@ -26,7 +26,7 @@ export default function Nasa() {
             <section className="main-section">
               <img src={m.image} alt={m.title} />
 
-              <div className="detail-section" key={i}>
+              <div className="detail-section">
                 <h3>{m.title}</h3>
                 <p className="explanation-section">{m.description}</p>
               </div>
