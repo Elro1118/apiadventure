@@ -23,14 +23,14 @@ export default function Nasa() {
       {nasaData.map((m, i) => {
         return (
           <>
-            <div className="main-section">
-              <img key={i} src={m.image} alt={m.title} />
+            <section className="main-section">
+              <img src={m.image} alt={m.title} />
 
               <div className="detail-section" key={i}>
                 <h3>{m.title}</h3>
                 <p className="explanation-section">{m.description}</p>
               </div>
-            </div>
+            </section>
           </>
         )
       })}

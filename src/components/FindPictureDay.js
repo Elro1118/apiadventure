@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
@@ -22,16 +22,6 @@ export default function Pictures() {
       'ui:placeholder': 'Search for picture...'
     }
   }
-
-  // const getAllPetsThatCanBeAdopted = () => {
-  //   setLoading(true)
-
-  //   axios.get('https://localhost:5001/api/pets').then(resp => {
-  //     console.log({ resp })
-  //     setLoading(false)
-  //     setPets(resp.data)
-  //   })
-  // }
 
   const searchForPictures = event => {
     setOldSearching(event.formData.search)
@@ -60,11 +50,6 @@ export default function Pictures() {
     })
   }
 
-  // useEffect(() => {
-  //   getAllPetsThatCanBeAdopted()
-
-  // }, [])
-
   const deletePicture = event => {
     console.log(event.target.value)
     axios
@@ -74,17 +59,20 @@ export default function Pictures() {
 
         if (resp.status === 200) {
           searchAfterDelete()
-          // setPictures(resp.data.results)
         }
       })
   }
 
   return (
     <>
+      <p>
+        {' '}
+        <Link to={`/`}>/Home</Link>
+      </p>
       <Form schema={schema} uiSchema={uiSchema} onSubmit={searchForPictures} />
       {pictures.length > 0 && (
         <table className="table">
-          <thead className="thead-light">
+          <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
               <th scope="col">Title</th>
@@ -112,7 +100,9 @@ export default function Pictures() {
                     </button>
                   </td>
                   <td>
-                    <Link to={`/UpdatePicture/${m.id}/${m.name}/${m.origin}`}>
+                    <Link
+                      to={`/UpdatePicture/${m.id}/${m.title}/${m.description}`}
+                    >
                       <button className="btn btn-warning">Update</button>
                     </Link>
                   </td>
